@@ -1,14 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # coding: utf-8
 # run with PYTHONIOENCODING=utf-8
 
 import sys
 import re
+import codecs
 
 # not used, but possibly interesting http://www.nltk.org/
 
 # http://www.clips.ua.ac.be/pages/pattern-de
-from pattern.de import  lemma, tag, predicative, singularize
+from pattern.de import lemma, tag, predicative, singularize
 
 # possible parts of speech:
 # PRP$, FW, VBN, WDT, JJ, WP, DT, RP, NN, TO, PRP,
@@ -23,7 +24,7 @@ part_of_speech_command = {
 }
 
 pattern_word = re.compile('[a-zA-Z]')
-pattern_dash = re.compile('[—-]')
+pattern_punctuation = re.compile(ur'—-|[«»…–<>]')
 
 def transform(tagword):
     word = tagword[0]
@@ -47,10 +48,10 @@ def transform(tagword):
 def main(filepath):
     text = ''
 
-    with open(filepath, 'r') as f:
+    with codecs.open(filepath, 'r', 'utf-8') as f:
         text = f.read()
 
-    text = pattern_dash.sub(' ', text)
+    text = pattern_punctuation.sub(' ', text)
     tagged_words = tag(text)
 
     word_counts = {}

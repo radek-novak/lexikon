@@ -24,7 +24,7 @@ part_of_speech_command = {
 }
 
 pattern_word = re.compile('[a-zA-Z]')
-pattern_punctuation = re.compile(ur'—-|[«»…–<>]')
+pattern_punctuation = re.compile(ur'[—\-|«»…–<>]')
 
 def transform(tagword):
     word = tagword[0]

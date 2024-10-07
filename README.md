@@ -8,7 +8,7 @@ Outputs word counts in a text file, while transforming words to their base forms
 
 `seiner` -> `sein`
 
-`Schüle` -> `Schule`
+`Schulen` -> `Schule`
 
 Output example:
 ```
